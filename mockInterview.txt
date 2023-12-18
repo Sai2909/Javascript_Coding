@@ -1,0 +1,456 @@
+
+Temporal dead zone
+A temporal dead zone (TDZ) is the area of a block where a variable is inaccessible.
+ex if you access variable before initialization it throws error Cannot access 'a' before initialization
+
+Map and filter and reduce 
+map returns new array from existing array. applying function to each element transforms into new array.
+filter returns new array from existing array. applying condition to each element and if condition satisfy push to element to array and returns
+reduce has accumulator,current values reduce can makes array values down to just single value
+
+Closures 
+A closure is a combination of functions bundled together with reference to the surrounding state means the lexical environment
+It simply means child function will access to parent scope even if parent function is closed 
+
+Debounce vs throttling 
+Debounce is limit the execution of a function call and waits for a certain amount of time before running it again 
+The throttle also limits function execution calls for ex it takes a 1-sec delay first it will execute the function immediately then wait 1sec and 
+execute the function again so it will be continued to execute intervals of time 
+Debounce is most suitable for control events like typing or button clicks
+Throttle is most suitable for continued user events like resizing and scrolling 
+
+Axios interceptors
+Interceptors are a feature that allows an application to intercept requests or responses before they are handled by then or catch 
+Ex token sends every request 
+
+Event bubbling and capturing and 
+event delegation 
+It happens when an element receives an event and that event bubbles up to its parent and ancestor elements on DOM until gets to the root element
+Event capture phase opposite of bubbling, its parent to child
+Event delegation is pattern to handle events efficiently. Instead of adding event listener to each and every smiler elements we can add event listener to parent element.
+Call an event on particular target using event.target property of object to perform a task. 
+For example we take Amazon website. It is several categories so we couldn’t add on click event on every category to navigate that category page. 
+simply we can add event to parent element and call the event using property of event.target and 
+it is capturing which element triggers than we can perform task on that element. 
+
+Why use react
+It uses VDOM
+It uses the component structure 
+It uses a modularize component 
+We can build complex UI easily
+It has a view library only
+
+What is de-structure how can use arrays if the value change dynamic
+de-structure is extract values from array/object and uses like variables
+
+If two components shared the same username to display how will do in
+saves in local storage
+
+local storage vs session storage vs cookies
+ 	        Local Storage	    Session Storage	  Cookies
+Capacity-->	10MB	          5MB	              4KB
+Browsers-->	HTML 5	        HTML 5	          HTML 5 / HTML 4
+Accessibility-->Any Window  Same Tab	      Any Window
+Expiration-->	Never	On      Tab Close	      Manually Set 
+Browser Support-->	Very High 
+Supported Data Types-->	String Only 	
+Auto-expire Option-->	No	 Yes	             Yes
+Storage Location-->	Browser Only	Browser Only	Browser and Server
+Editable and Blockable by Users-->	Yes
+SSL Support-->  	No	      No	                Yes
+
+Which is better local storage or session storage?
+If we want some data on the browser, we often utilize the local storage object. Cookies are used if we want them on the server.
+session storage is used if we want to delete the data if the user closes that particular tab or the season
+
+Is Async a sessionStorage?
+No, all localStorage calls are synchronous
+
+Position relative vs position absolute 
+default value is static it's not effect layout
+position: relative places an element relative to its current position without changing the layout around it, 
+position: absolute places an element relative to its parent’s position and changing the layout around it.
+position: fixed; is positioned relative to the viewport, stays same place
+position: sticky; is positioned based on the user's scroll position.
+
+Two separate div tags to display next to each other how can do that
+using flex-box
+one div inside another div displays inline property without affecting width and height
+
+Servers side component 
+when you render website HTML on server we can use SSR
+
+Rules of hooks 
+hooks can only be called inside functional component
+hooks can be top level of component
+hooks cannot be conditional
+
+Npm vs yarn
+NPM fetches packages from the online npm registry for every 'install' command
+YARN stores dependencies locally in most cases and fetches packages from a local disk.
+
+What are React hooks? Explain the difference between useState and useEffect.
+React hooks are functions that allow you to use state and lifecycle features in functional components. 
+useState is used to manage state, while useEffect is used to handle side effects like fetching data or subscribing to events.
+
+Use context API
+props passed to several components. this leads to prop drilling. 
+avoid prop drilling use contextAPI allows data to be passed through a component tree without having to pass props manually at every level
+Context API consists of two main components:  provider and consumer
+The provider is responsible for creating and managing the context, which holds the data
+the consumer is used to access the context and its data
+ Context API provides a way to share data between components without passing it through props. It's useful for managing global state. 
+ You create a context using createContext and provide it at a higher level. Consumers can access the context using useContext.
+
+Code Example:
+const ThemeContext = createContext();
+
+function App() {
+ return (
+ <ThemeContext.Provider value="dark">
+ <Component />
+ </ThemeContext.Provider>
+ );
+}
+
+function Component() {
+ const theme = useContext(ThemeContext);
+ // Use theme value here
+}
+
+custom hook
+when you have component logic to be used by multiple components. we can extract logic place in custom hook.
+the hook start with name 'useFetch' 'useOnline'  like  
+
+Global execution contexts
+
+props.children
+children are a special prop that is used to pass the data from the parent component to the children component 
+but this data must be enclosed within the parent’s opening and closing tag.
+
+const Picture = (props) => {
+  return (
+    <div>
+      <img src={props.src}/>
+      {props.children}
+    </div>
+  )
+}
+
+//App.js
+render () {
+  return (
+    <div className='container'>
+      <Picture key={picture.id} src={picture.src}>
+          //what is placed here is passed as props.children  
+      </Picture>
+    </div>
+  )
+}
+
+How can you optimize performance in a React application? Discuss techniques like memoization, code splitting, and lazy loading.
+Performance optimization techniques include memoization with useMemo and useCallback to avoid unnecessary recalculations, 
+code splitting to split the bundle into smaller chunks, and lazy loading to load components or resources only when needed.
+
+useCallback and useMemo
+useCallback and useMemo are both React Hooks that help optimize the performance of a React application by memoizing technique.
+useCallback is often used as an event handler or to pass data between components. 
+The useCallback hook takes two arguments: a function and a dependency array. 
+It will return a memoized version of the function that only changes if one of the dependencies has changed.
+useMemo is a hook that returns a memoized value. It takes two arguments: a function that returns a value and a dependency array. 
+It will call the function and return its result only if one of the dependencies has changed.
+useCallback returns a memoized callback function, while useMemo returns a memoized value.
+
+What is the hook? Life cycle methods vs hooks
+React hooks are functions that allow you to use state and lifecycle features in functional components. 
+Hooks can be stateful and can manage side effects. React hooks provide a more concise way to manage state and side effects in functional components. 
+Lifecycle methods are only available in class components
+
+functional components vs class Components
+A functional component is just a plain JavaScript pure function that accepts props as an argument and returns a React element(JSX).
+A class component requires you to extend from React.Component and create a render function that returns a React element. 
+There is no render method used in functional components. React hooks provide a more concise way to manage state and side effects in functional components.
+
+Unidirectional flow in react
+In React JS, data flows in one direction, from Parent to Child. This helps components to be simple and predictable. 
+Data passed through Props it's properties passed to a child component that can hold information.
+
+Mounting in react
+Mounting means putting elements into the DOM. It occurs when a component is first added to a page
+
+Mounting vs render
+Mounting occurs when a component is first added to the page, while rendering occurs when a component's state changes.
+
+package.json vs package.lock.json
+The “package.json” file defines the rules required to run your application and install dependencies. 
+the “package-lock.json” file holds detailed information on all the dependencies on your project.
+
+Function composition 
+it is a approach one function result on to pass next function until final function executes get results
+function composition can be composed of any number of functions
+
+React dom
+ReactDOM is the JavaScript library that allows React to interact with the DOM. 
+
+React dom server
+The ReactDOMServer object enables you to render components to static markup (typically used on node server).
+This object is mainly used for server-side rendering (SSR)
+
+ReactMixins
+
+Diffing algorithm is VDOM reconciliation process
+React scripts react-scripts are simply scripts to run the build tools required to transform React JSX syntax into plain JavaScript programmatically
+Concurrent rendering 
+
+Use effect vs use layout effect 
+useEffect() is asynchronous useLayoutEffect() synchronous 
+useLayoutEffect() code always comes before useEffect()
+useEffect() flickering or produce inaccurate results then useLayoutEffect() useful hook
+
+1.what are new tags of html5?
+there are several tags. 
+some of the tags are aside,article,datalist,canvas,date,datetime,audio,video,color inputs are some of new tags.
+
+2.should we inject div tag inside of span tag?
+yes, div is block scope and span is inline tag but schematically wrong it will break in production
+
+3.5 ways center align image inside div?
+flex box,grid,table css,margin css, position css
+
+4.px vs em vs rem?
+px is absolute value and it is  fixed size
+em is scalable elements that needs to change size relative to parent element
+rem is scalable responsive layout that needs to change size relative to root element
+
+5.name all basic data types?
+there are two types one is primitive and another is non-primitive
+primitive--string,boolean,number,null,undefined,bigint,symbol
+non-primitive--array,object,date
+
+6.what is event delegation and bubbling and capturing?
+event delegation is pattern to handle events efficiently.
+Instead of add event listener to each and every similar element we can add event to parent element. 
+call an event on particular target using event.target property of object to perform a task
+bubbling--when element receives event happens its bubbles up to parent element and ancestor element on dom until get root element
+capturing is opposite of bubbling
+
+7.what is closure and uses?
+closure is combination of function bundled together with reference to surrounding state. it means lexical environment
+simply means a child function can access parent scope even if parent function closed.
+usages memorization and currying
+
+8.what is need of js frameworks?
+to help you to design web applications. it has flexibility and scalable and code readability and plugins and builds-->production,development... 
+
+9.VDOM vs DOM?
+DOM is document object modal and it represents document tree structure of HTML
+React follows observable pattern
+VDOM is memory representation of DOM means exact copy of DOM
+if react changes state in component and it update VDOM but not in DOM.
+after updating react compares previous version of VDOM and current version of VDOM
+react knows exactly which nodes changed in VDOM.those nodes only changed in real DOM
+this process is reconciliation process. it uses diffing algorithm. VDOM is faster because of making minimal manipulating operations on realDOM
+
+10.component lifecycle methods and order?
+there phases mounting and updating and unmounting
+constructor
+getderivedstatefromprops
+shouldcomponentupdate
+render
+componentdidmount
+componentdidupdate
+componentwillunmount
+
+11.pure components vs HOC components?
+pure components work like functional components there is one difference that is shouldcomponentupdate lifecycle method.
+it is checking on every render shallow comparison of state and props if it difference should render component other wise should not
+HOC is component it takes another component as argument and returns new component. it is pattern from compositional nature
+we don't modify components we create new ones
+it is useful for code reuse
+props manipulating
+it is pure function. It ha no side effects. return new components only
+for example show loading when user fetching data so wa can create HOC achieve it
+react-redux --> connect
+react-router--> withRouter
+material-ui-->	withStyles(styles)(UserPage)
+
+12.HOF functions?
+HOF takes function as argument returns another function. they enable us abstract over actions not values
+for example map,foreach,filter
+
+13.state vs props vs ref?
+state is object that stores information and owned by component and locally scoped
+state can mutable via setState
+props is object that have information
+props passing down child components and it immutable
+ref are accessing DOM elements without using selector methods of the document object
+ref create like useRef hook createRef using class-based components
+use-cases of refs are maintaining input focus,text selection,media controls,outside dom,wth third party libraries
+
+14.version of react?
+react 18 features for automatic batch updates, useTransition startTransition  A transition is a new concept in React to distinguish between urgent and non-urgent updates.
+support for Suspense on the server,New Strict Mode Behaviors, new hooks
+
+15.functional component vs class component?
+functional component is pure functional in javascript
+we can maintaining stateful using hooks 
+class component extend from react and it has render method return children and class component has lifecycle methods
+
+16.Why it is Recommended to use Functional Components over Class Components?
+simplicity
+performance
+code readability
+easier to test
+we can make stateful and lifecycle methods using hooks
+
+17.Is the Shadow DOM the same as the Virtual DOM?
+No, they are different. The Shadow DOM is a browser technology designed primarily for scoping variables and CSS in web components. designed for encapsulation
+Shadow DOM allows hidden DOM trees to be attached to elements in the regular DOM tree this shadow DOM tree starts with a shadow root
+const shadowOpen = elementRef.attachShadow({ mode: "open" });
+const shadowClosed = elementRef.attachShadow({ mode: "closed" });
+Shadow DOM is particularly useful when creating custom elements.
+The virtual DOM is a concept implemented by libraries in JavaScript on top of browser APIs.
+
+18.what are fragments?
+return multiple elements from component by allowing us to group list of children without adding extra node on DOM
+
+19.react fiber?
+react fiber is re-implementation of react core algorithm. that is reconciliation main goal is ability to pause and resume and reuse work.
+incremental rendering and break down rendering tasks to small chunks and distribute across the numerous frames.
+it more suitable for layout and gestures and animation
+
+20.how can maintaining data in complex ui?
+using redux maintaining external global single store to achieve
+contextAPI
+
+21.two way data binding implementation?
+use callback to achieve it
+
+22.pure functions?
+a function has always returns same if we pass same arguments. it is not depend on any state
+
+23. promise and async&await?
+promises makes a asynchronous operation either resolve or reject.
+previous we are using callbacks to achieve asynchronous operation. writing multiple callbacks inside callback will create callback hell
+to avoid callback hell promises are introduced. creating new promise and it returns promise object
+promise function  takes resolve and reject arguments
+it has three states 1.pending 2.fulfilled 3.reject
+initial stage to execute function
+when promise resolve it will fulfilled
+if reject it will reject
+we consume output we use then and catch then used resolve callback catch used reject callback
+promise chain is passing return value to then to another then and soon is called promise chain
+async/await is shorter syntax of promise 
+write async keyword function before and await waiting either resolve or reject
+we catch errors using try and catch
+
+24.how to 5 api calls parallel?
+promise.all([])
+
+25.what happens background when enter url and hit enter?
+each website has ip than ip locate DNS server and DNS locates to web server then fetch website from server
+
+26.what is hoisting and scope
+variables declare with var and function declarations are hoisting
+if we declared with var is hoisted and default value assigned as undefined
+let and const are also hoisted but not initialization default value if access it will give reference error that block temporal dead zone
+Function declarations are hoisted not function expressions.
+Function hoisting allows us to call a function before it is defined
+scope-- block scope if the variable is declared in code block that variable visible in that code block
+lexical environment scope
+
+27.service workers and pwa?
+it is script that browser runs background separate from web page
+service workers act as proxy between web browser and web server.
+they aim to readability by providing offline access as well as boost web page performance
+Service workers are at the core of progressive web applications.
+pwa has modern web capability to delivery to app experience to users
+pwa can run multiple platforms from single code base
+pwa support offline and it will install on device and faster loading and user interactions
+
+28.prototype and prototype chain?
+
+29.HTML?
+hypertext is text that is organized order to connect related items it comes from hyperlink
+markup is style guide it defined elements and elements will be page layout 
+language is combines both features make HTML
+
+30.hyperlink?
+<a> tag defines hyperlink. which is used to link between one page to another
+
+31.HTML entity
+some characters are reserved in HTML we can show in web page we can use entity name or entity number ex &lt or &#60 to display < symbol
+used for non-breaking space
+
+32.input type submit vs button in html
+<input type="submit"> cause the form data to be submitted to the server
+<button> can have content, whereas <input> cannot (it is a null element).
+
+
+33.callbacks
+callback is a function passed another function to execute results. make asynchronous operations we can use callbacks
+ex setTimeout(cb,time), addEventListener('click',cb)
+
+34.callbacks vs HOF
+A callback is a function that is passed as an argument to another function.
+
+A higher order function is a function that takes function as an argument and returns a function as an output.
+ex filter,map
+
+35.What is Lifting State Up in React?
+We lift the state up to make the parent state a single shared state and pass the parent's data to its children. 
+This concept is called lifting state up. maintain data consistency throughout applications.
+
+36.What is Hot Module Replacement?
+allows you to make changes to your code and immediately see the results. without losing the current state of the app.
+ without a full reload.
+
+ 36.What is the use of Parcel, Vite, Webpack?
+ bundling all the js files together
+
+37.How does create-react-app work?
+create-react-app (CRA), your command runs through a series of checks. It finds information about your system and run program
+
+38.What is Tree Shaking?
+dead code elimination means if unused modules in application webpack will eliminate and not remove code 
+
+39.Difference b/w dependency and devDependency
+"dependencies" : Packages required by your application in production. 
+"devDependencies" : Packages that are only needed for local development and testing.
+
+40.npm vs npx
+NPM is a package manager used to install, delete, and update Javascript packages on your machine. 
+NPX is a package executer, and it is used to execute javascript packages directly, without installing them.
+
+41.Difference between console.log(<HeaderComponent/>) and console.log(HeaderComponent())
+
+42. What if 2 components are given will the state change in one component will effect the other component’s state (child)?
+no,it will not re-render. If you pass any props to the component from the parent component and you update that prop in children
+or that prop update in the parent component so both will re-render. 
+But if the data or state has no dependency on the parent component so it will not cause a re-render in the parent component.
+
+43.What is the use of return in useEffect ?
+removing EventListener
+
+44.Difference b/w client-side routing and server-side routing?
+
+45.How does React handle routing and navigation?
+ react-router-dom library
+ React Router provides a <Link> component, which can be used for basic React navigation
+ 
+46.contextAPI vs redux
+ Context API is a light-weight solution which is more suited for passing data from a parent to a deeply nested child.
+ Redux is a more robust State Management solution.
+
+47.Can I replace Redux with context API?
+If you're only using Redux to avoid passing down props, you can replace it with Context API. 
+Context is great for sharing trivial pieces of state between components. 
+Redux is much more powerful and provides a set of handy features that Context doesn't have
+It's great for managing centralized state and handling API requests.
+
+48.Difference Between Context API and Redux
+The main difference between these two libraries is that Redux deals with changes of the state in a centralized manner. 
+On the other hand, Context deals with them as they happen on the component level.
+
+49.difference of function statement and function expression
+hoisting is happens in function statement not in function expression

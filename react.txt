@@ -1,0 +1,107 @@
+1.What are the major features of React?
+A)1.it uses VDOM.
+  2.it uses jsx like xml syntax.
+  3.it support server-side-rendering.
+  4.it follows the unidirectional.
+  5. we can create reusable code as much as well.
+
+2.What is the difference between Element and Component?
+A) we can use React.createElement() to create HTML Elements
+   where as Component is simplified JSX Component like class and functional Components
+
+3.What is the difference between HTML and React event handling?
+A) callback is invoked when setState() function is finished. so setState() is
+   a asynchoruns then we can use callback for any post action.
+
+4.How to pass a parameter to an event handler or callback?
+A)1.<div onClick={()=>this.handler(id)}>onClick</div>
+  2.<div onClick={this.handler.bind(id)}>onClick</div>
+
+5.What are synthetic events in React?
+A) synthetic event wrapper around cross browser native event.
+
+6.What are Higher-Order Components?
+A) it takes a one or more Components as parameter and return a new Component.
+   the Component rendering original Component that we passes to it
+
+7.what is children props?
+A) children props are special props when we pass Component as data to other Components
+
+8.where can use this.props.children?
+A) it used to display data between opening tag and closing tag instead of self closing tag
+   ex. <Component>data</Component> instead of <Component/>
+
+9.what are the decorates?
+A)
+
+10.How to define constants in React?
+A) using static and it is work with React.createClass()
+   class MyComponent extends React.Component {
+  static DEFAULT_PAGINATION = 10
+}
+
+11.what are render props?
+A) it is pattern for using share code between components
+   <MyComponent render={props=><h1>{props.name}</h1>}/>
+
+12.How to pass params to history.push method in React Router v4?
+A) this.props.history.push({
+  pathname: '/template',
+  search: '?name=syam',
+  state: { detail: response.data }
+})
+
+13. what are webpack and babel?
+A) webpack and babel tools for developer that optimizing javascript applications
+
+webpack is module bundler we can use minify multiple files in javascript and increase overall efficiency. 
+a modular bundler takes all assets comes up with single output file that making more light weight project.
+
+for babel it is syntax converter and transpiler. the code to be compatible with all browsers and environments. 
+in such instances we can uses babel and it turns latest javascript code into ES5 this makes all browsers compatible.
+
+transpiler and polyfill
+
+A transpiler is a special piece of software that translates one source code to another source code.
+It can parse modern code and rewrite it using older syntax constructs, so that it’ll also work in outdated browsers.
+
+example --> nullish is modern in js  height = user?.height it may fail outdated browsers.
+A transpiler would analyze our code and rewrite user?.height into (user.height !== undefined && user.height !== null) ? user.height : undefined
+
+Polyfills
+New language features may include not only syntax constructs and operators, but also built-in functions that might not be supported on older browsers.
+Math.cbrt(n), for example, is a function that returns the cube root of a number, but it may not be supported by older browsers, in which case this method will fail.
+
+Polyfill is a script that updates/adds new functions. It bridges the gap and adds missing implementations if needed.
+
+For this particular case, the polyfill for Math.cbrt is a script that implements it, like this:
+
+if (!Math.cbrt) { // if no such function
+  // implement it
+  Math.cbrt = function(number) {
+    // Math.pow exist even in ancient JavaScript engines
+    return Math.pow(number,0.33);
+  };
+}
+
+What is React Fiber?
+ React Fiber is a concept of ReactJS that is used to render a system faster, smoother and smarter. 
+ The Fiber reconciler, which became the default reconciler for React 16 and above, is a complete rewrite of React’s reconciliation algorithm to solve some long-standing issues in React. 
+ Because Fiber is asynchronous, React can:
+
+Pause, resume, and restart rendering work on components as new updates come in
+Reuse previously completed work and even abort it if not needed
+Split work into chunks and prioritize tasks based on importance
+
+How to programmatically trigger click event in React?
+using ref
+<input ref={(input) => (this.inputElement = input)} />
+this.inputElement.click();
+
+Is it possible to use async/await in plain React?
+If you want to use async/await in React, you will need Babel and transform-async-to-generator plugin.
+React Native ships with Babel and a set of transforms.
+
+animation packages for react?
+React Transition Group and React Motion
+
